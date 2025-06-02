@@ -10,9 +10,9 @@
   "description": "",
   "type": "module",
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.12.0",
+    "@modelcontextprotocol/sdk": "^1.12.1",
     "axios": "^1.9.0",
     "express": "^5.1.0",
-    "zod": "^3.24.4"
+    "zod": "^3.25.48"
   }
 }
