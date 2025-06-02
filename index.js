@@ -1,5 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'; // ✅ use stdio
 import { z } from 'zod';
 import axios from 'axios';
 
@@ -23,11 +23,7 @@ server.tool('weather', { city: z.string() }, async ({ city }) => {
 });
 
 // Step 3: Setup transport for Smithery
-const transport = new StreamableHTTPServerTransport({
-  path: '/mcp',
-  cors: true,
-});
+const transport = new StdioServerTransport(); // ✅ updated transport
 
-// Step 4: Connect and serve
+// Step 4: Connect and run
 await server.connect(transport);
-console.log('✅ MCP Server running (Smithery-compatible)');
