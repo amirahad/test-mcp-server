@@ -244,13 +244,23 @@ async function startHttpMode() {
         }
 
         const result = await toolData.handler(args);
+        console.log("🚀 ~ app.post ~ result:", result)
 
         log(`Tool ${name} result:`, result);
+
+        const resultText = result?.content
+          ?.map(item => item.text)
+          ?.join(" ");
+
+        log(`Tool ${name} result text:`, resultText);
+        if (!resultText) {
+          throw new Error(`Tool ${name} returned no text content`);
+        }
 
         res.json({
           jsonrpc: '2.0',
           id,
-          result
+          result: resultText
         });
 
       } else if (method === 'initialize') {
